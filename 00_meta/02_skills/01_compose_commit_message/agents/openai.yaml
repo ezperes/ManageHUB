@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compose Commit Message"
+  short_description: "Generate staged-change commit messages"
+  default_prompt: "Use $compose-commit-message to generate a commit message from staged changes."
