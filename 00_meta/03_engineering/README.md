@@ -10,6 +10,7 @@ Esses documentos não são destinados ao usuário final. Eles servem de referên
 2. [[02_architecture/README|Arquitetura]] — limites, dependências, organização e visão estrutural do sistema.
 3. [[03_standards/README|Padrões]] — critérios recorrentes aplicáveis ao desenvolvimento.
 4. [[04_decisions/README|Decisões]] — registros contextuais de escolhas arquiteturais relevantes.
+5. [[05_conceptual-model/README|Modelo conceitual]] — exploração dos conceitos que podem estruturar a representação e o relacionamento das informações no sistema.
 
 ## Critério de inclusão
 
