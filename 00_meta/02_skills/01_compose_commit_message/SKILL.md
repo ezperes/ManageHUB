@@ -11,7 +11,7 @@ Generate one proposed commit message from the staged changes and archive it; nev
 
 1. Run `scripts/inspect_staged_changes.py` from this skill directory.
 2. If `staged` is false, show the working-tree summary and ask the user which files to stage. Stage only the confirmed paths, then run the inspection again. Never run `git add .` on your own initiative; use it only when the user explicitly requests it.
-3. Read `references/commit-convention.md`, inspect `git diff --cached`, and classify the change. Ask for clarification rather than guessing when the module, scope, type, or breaking-change status is not clear.
+3. Read `references/commit-convention.md`, inspect `git diff --cached`, and classify the change. Select the bracketed impact sphere from the behavior and architecture materially affected, not from the paths containing the edits. Ask for clarification rather than guessing when the impact sphere, scope, type, or breaking-change status is not clear.
 4. Draft the message in English and validate it against the reference.
 5. Save it using `scripts/save_commit_message.py --message-file <path> --description <snake_case_description> --areas <comma_separated_areas>`.
 6. Report the saved file and the proposed subject. Do not create a Git commit unless separately asked.
