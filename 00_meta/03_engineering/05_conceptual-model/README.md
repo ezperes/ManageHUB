@@ -16,10 +16,10 @@ O modelo conceitual fornece insumos para essas áreas, mas não as substitui. Qu
 ## Documentos
 
 0. [[00_draft|Rascunho conceitual]] — consolidação provisória das ideias, hipóteses, distinções e questões em aberto.
-1. [[01_artifact-foundation|Fundamento dos artefatos]] — reservado para a definição estabilizada de artefato, identidade, representação e contexto.
-2. [[02_relationships-and-provenance|Relações e proveniência]] — reservado para relações como fatos contextualizados, suas fontes e seu histórico.
+1. [[01_artifact-foundation|Fundamento dos artefatos]] — formulação em amadurecimento sobre artefatos, axiomas, atributos, identidade, ancestralidade e instanciação.
+2. [[02_relationships-and-provenance|Relações e proveniência]] — formulação em amadurecimento sobre vínculos, polos, leituras, cardinalidade, filtros e histórico.
 3. [[03_work-and-fulfillment|Trabalho e satisfação]] — reservado para a relação entre origem, obrigação, resultado e evidência de cumprimento.
-4. [[04_typing-and-classification|Tipagem e classificação]] — reservado para natureza, tipos, papéis, estados, formatos e vocabulários de domínio.
+4. [[04_typing-and-classification|Tipagem e classificação]] — formulação em amadurecimento sobre classificações, capacidades, templates e especializações de domínio.
 
 ## Critério de redação
 

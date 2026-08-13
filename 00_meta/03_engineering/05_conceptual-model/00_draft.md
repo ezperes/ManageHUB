@@ -4,35 +4,15 @@
 
 ## Intenção
 
-O ManageHUB pode ser compreendido como um sistema que opera sobre representações persistentes de elementos relevantes de um contexto de gestão e sobre os fatos que os conectam. Pessoas, organizações, comunicações, documentos, processos, tarefas, eventos e referências possuem naturezas distintas, mas podem compartilhar uma infraestrutura comum de identidade, contexto, proveniência, histórico e relacionamento.
+O núcleo do ManageHUB pode ser compreendido como um sistema que opera sobre representações persistentes de elementos relevantes de um contexto de gestão e sobre os fatos que os conectam. Pessoas, organizações, comunicações, documentos, processos, tarefas, eventos e referências possuem naturezas distintas, mas podem compartilhar uma infraestrutura comum de identidade, contexto, proveniência, histórico e relacionamento.
 
-O sistema não manipula diretamente pessoas, organizações ou objetos do mundo real. Ele manipula seus registros e representações informacionais. Essa distinção precisa permanecer explícita ao tratar identidade, duplicidade, sincronização, privacidade e auditoria.
+O núcleo não manipula diretamente pessoas, organizações ou objetos do mundo real. Ele manipula seus registros e representações informacionais. Aplicações concretas podem interagir com referentes externos por meio de apps, applets e integrações e refletir essas interações nos artefatos do núcleo.
 
 ## Artefatos
 
-Chamamos provisoriamente de **artefato** toda representação informacional que o sistema pode identificar, contextualizar, relacionar, acompanhar ou processar.
+Chamamos de **artefato** a unidade universal pela qual o sistema representa, persiste e processa elementos de interesse administrativo. Sua definição, seus atributos universais e específicos, os regimes ontológicos, a ancestralidade e a instanciação estão consolidados, ainda em amadurecimento, em [[01_artifact-foundation|Fundamento dos artefatos]].
 
-Um artefato pode representar, por exemplo:
-
-- uma pessoa, organização, unidade, bem ou outro referente relevante;
-- uma comunicação, documento, anexo, registro ou versão;
-- um processo, evento, tarefa, resultado ou evidência;
-- uma regra, catálogo, configuração ou outra referência operacional;
-- uma afirmação ou um vínculo entre outros artefatos.
-
-O uso de uma unidade comum não elimina as diferenças entre esses elementos. Ele apenas permite que todos possam participar de uma mesma rede de contexto.
-
-As propriedades candidatas compartilhadas por um artefato incluem:
-
-- identidade persistente;
-- tipo ou classificação;
-- atributos próprios;
-- proveniência e autoria;
-- marcas temporais e histórico;
-- relações com outros artefatos;
-- regras de acesso, retenção e visibilidade quando aplicáveis.
-
-A formulação inicial dessas propriedades, dos regimes ontológicos e das relações entre definições e instâncias foi registrada em [[01_artifact-foundation|Fundamento dos artefatos]]. Ela continua em amadurecimento; este rascunho preserva as questões ainda não resolvidas.
+Este rascunho não duplica essas formulações. Ele preserva apenas as consequências ainda exploratórias e as questões que dependem de elaboração posterior.
 
 ## Rede de contexto
 
@@ -53,18 +33,7 @@ Essa rede deve viabilizar, entre outras capacidades, reconstrução de narrativa
 
 ## Relações como fatos de primeira classe
 
-Uma relação não precisa ser apenas um detalhe técnico entre dois registros. Ela pode representar um fato que merece identidade, autoria, fonte, tempo, validade, confiança e histórico próprios.
-
-Por exemplo, a afirmação de que um documento satisfaz uma tarefa pode precisar indicar:
-
-- quem criou ou confirmou o vínculo;
-- quando e com base em qual fonte;
-- se ele foi inferido por automação ou confirmado por uma pessoa;
-- qual seu grau de confiança;
-- em que período foi válido;
-- se foi corrigido, revogado ou substituído.
-
-A expressão “relações também são artefatos” é uma hipótese importante deste modelo: relações devem poder ser tratadas como registros contextualizados sempre que isso for necessário. Ainda é preciso definir quando uma simples referência basta e quando uma relação precisa desse tratamento completo.
+Relações são artefatos de primeira classe: seus definidores estabelecem semântica, polos, leituras, cardinalidade e filtros, enquanto suas instâncias registram vínculos concretos e sua proveniência. A formulação corrente está em [[02_relationships-and-provenance|Relações e proveniência]].
 
 ## Trabalho, obrigação e satisfação
 
@@ -87,6 +56,8 @@ Uma tarefa pode ter uma solução esperada, mas a existência de um produto não
 ## Identidade e representação legível
 
 Cada artefato deve possuir uma identidade persistente, independente de reclassificações e mudanças de apresentação. Um identificador opaco, como UUID, é candidato a cumprir esse papel.
+
+Em regra, um referente deve possuir uma única representação artefatual. Cópias deliberadas são excepcionais, recebem identidade própria e preservam sua origem por meio da relação `é copiado por`.
 
 Representações legíveis podem incluir a classificação corrente, por exemplo `documento.comunicação.e-mail#E44AD`. Elas facilitam a leitura humana, mas não devem necessariamente constituir a identidade imutável do artefato: uma classificação pode ser corrigida, enriquecida ou substituída sem que o registro deixe de ser o mesmo.
 
@@ -118,11 +89,9 @@ Inferências automatizadas não devem ser confundidas automaticamente com fatos 
 
 ## Questões em aberto
 
-- Quais outras propriedades devem ser invariantes de todo artefato, além das já propostas, e quais pertencem somente a determinadas naturezas?
 - Que relações devem ser explicitamente modeladas e quais podem ser derivadas?
-- Em quais casos uma relação precisa ser um registro de primeira classe?
 - Como representar relações n-árias, validade temporal, versões e contradições?
-- Como distinguir identidade de correspondência, duplicidade e equivalência entre representações?
+- Quais condições autorizam cópias deliberadas e quais efeitos elas produzem em cada contexto?
 - Uma tarefa pode ter múltiplas origens, múltiplas evidências ou soluções parciais?
 - Quais estados são derivados da rede e quais precisam ser declarados ou confirmados?
 - Como serão governados vocabulários universais e vocabulários específicos de cada aplicação?

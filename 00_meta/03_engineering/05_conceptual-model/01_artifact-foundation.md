@@ -4,9 +4,63 @@
 
 ## Propósito
 
-O modelo conceitual parte da premissa de que o ManageHUB opera sobre representações informacionais de elementos relevantes de um contexto de gestão. Chamamos essas representações de **artefatos**.
+O modelo conceitual do ManageHUB apoia-se em dois conceitos complementares: **artefatos**, que tornam elementos de interesse administrativo persistentes e processáveis, e **axiomas de sistema**, que fornecem a base mínima para interpretá-los. Juntos, eles permitem que o sistema represente informações diversas sem perder a semântica que lhes dá sentido.
 
-Um artefato não se confunde com seu referente no mundo real. Uma pessoa, uma organização, um documento físico ou uma ocorrência existem independentemente do sistema; o artefato é o registro identificável, contextualizável e relacionável que os representa ou documenta.
+Todo elemento tratado pelo sistema entra e permanece nele como artefato. Os axiomas também são artefatos, mas ocupam uma posição fundacional: estabelecem os significados e as regras elementares pelos quais os demais artefatos, suas definições, suas instâncias e suas relações podem ser compreendidos.
+
+### Artefato
+
+No ManageHUB, **artefato** é a unidade universal de representação, persistência e processamento de tudo aquilo que possa ser relevante para a gestão de um usuário ou organização.
+
+Um artefato não é necessariamente uma coisa material nem uma ocorrência concreta. Ele é a forma pela qual o sistema torna uma entidade — material, informacional, conceitual, normativa, relacional ou operacional — identificável, armazenável, recuperável, inteligível e processável ao longo do tempo.
+
+O núcleo do ManageHUB opera sobre essas representações informacionais persistentes, e não diretamente sobre seus referentes externos. Aplicações concretas, como o sroHUB, podem interagir com pessoas, organizações, dispositivos, serviços ou outros referentes por meio de seus próprios apps, applets e integrações. Essas interações produzem, consultam ou atualizam os artefatos por meio dos quais o núcleo preserva e processa o contexto administrativo.
+
+O conceito abrange dois planos complementares:
+
+- No plano **definidor**, artefatos formalizam como outras entidades devem ser compreendidas e tratadas pelo sistema: seus significados, estruturas, atributos, capacidades, restrições, relações permitidas e formas de processamento. São a base semântica pela qual o sistema recebe, armazena e interpreta novas informações.
+- No plano das **instâncias**, artefatos representam ocorrências individualizadas de interesse administrativo: uma pessoa, organização, documento, comunicação, evento, obrigação, decisão, relação ou qualquer outro ente identificável no contexto do usuário.
+
+Os exemplos seguintes são ilustrativos e não esgotam os elementos representáveis. Os ancestrais indicados para os definidores também são exemplos de uma possível especialização futura, e não um vocabulário já estabelecido.
+
+| Elemento representado | Regime ontológico | Ancestral ou definidor imediato |
+| --- | --- | --- |
+| Definição de pessoa | Definidor | Definição-base de entidade |
+| Pessoa individualizada | Instância | Definição de pessoa |
+| Definição de organização | Definidor | Definição-base de entidade coletiva |
+| Organização individualizada | Instância | Definição de organização |
+| Definição de contrato | Definidor | Definição-base de instrumento contratual |
+| Contrato específico | Instância | Definição de contrato |
+| Definição de e-mail recebido | Definidor | Definição-base de comunicação |
+| E-mail específico | Instância | Definição de e-mail recebido |
+| Definição de documento técnico | Definidor | Definição-base de documento |
+| Documento técnico específico | Instância | Definição de documento técnico |
+| Definição de tarefa | Definidor | Definição-base de item de trabalho |
+| Tarefa individualizada | Instância | Definição de tarefa |
+| Definição de processo administrativo | Definidor | Definição-base de processo |
+| Processo administrativo específico | Instância | Definição de processo administrativo |
+| Definição de reunião | Definidor | Definição-base de evento |
+| Reunião ocorrida ou agendada | Instância | Definição de reunião |
+| Definição de arquivo digital | Definidor | Definição-base de recurso informacional |
+| Arquivo anexado específico | Instância | Definição de arquivo digital |
+| Definição da relação `fiscaliza` | Definidor | Definição-base de relação |
+| Vínculo concreto entre fiscal e contrato | Instância relacional | Definição da relação `fiscaliza` |
+| Definição de workflow | Definidor | Definição-base de processo executável |
+| Execução específica de workflow | Instância | Definição de workflow |
+
+Ser imaterial não torna uma entidade menos apta a ser instância. Uma tarefa concreta é uma instância operacional; uma obrigação assumida é uma instância normativa; uma reunião ocorrida é uma instância de evento; e o vínculo específico entre duas pessoas ou entre um documento e uma tarefa é uma instância relacional. Todos são reais e relevantes para o domínio administrativo, ainda que não sejam objetos físicos.
+
+Assim, o artefato é tanto o ponto de entrada de uma entidade no armazenamento persistente quanto sua unidade permanente de inteligibilidade operacional. A qualquer tempo, ele e suas relações devem poder ser recuperados e interpretados para gerar valor por meio de consultas ou processamentos, previamente definidos ou formulados *ad hoc*.
+
+### Axioma de sistema
+
+Um **axioma de sistema** é um artefato que integra a base interpretativa mínima do ManageHUB. Ele estabelece um significado, uma distinção ou uma regra fundamental necessária para que o sistema possa compreender suas próprias definições, relações e instâncias.
+
+Os axiomas-raiz são definidos fora da cadeia ordinária de definições internas: sua validade não depende de outro artefato que os defina. Um axioma também pode descender de um ou mais axiomas, mas nunca de um definidor comum. Desse modo, a camada axiomática pode ser composta e especializada sem perder sua separação em relação às definições ordinárias.
+
+Os axiomas-raiz constituem o ponto de *bootstrap* do modelo, interrompendo a regressão infinita de definições e fornecendo o fundamento semântico a partir do qual os demais artefatos se tornam inteligíveis.
+
+Embora os axiomas-raiz sejam fundamentados externamente, todos os axiomas permanecem visíveis, identificáveis, classificáveis e consultáveis como artefatos. Isso permite que a base do sistema seja explícita, auditável e passível de evolução deliberada, sem confundir sua função fundacional com a de um definidor comum.
 
 ## Propriedades candidatas universais
 
@@ -22,6 +76,52 @@ Todo artefato deve poder possuir, no mínimo:
 
 Essas propriedades não tornam todos os artefatos equivalentes. Conteúdo documental, participantes de uma comunicação, prazo, responsável, formato de arquivo, estado de workflow, polos de uma relação e regras específicas de validação pertencem somente às naturezas ou definições a que se aplicam.
 
+## Atributos estruturais e semântica especializada
+
+Todo artefato possui uma quantidade fixa de **atributos generalistas universais**. Eles existem em todos os artefatos por integrarem sua estrutura comum, mas não carregam necessariamente o mesmo significado operacional em todas as tipologias. A tipologia do artefato define como cada atributo deve ser compreendido, exibido, preenchido, validado e processado.
+
+Entre os atributos generalistas candidatos estão `denominação`, `data inicial`, `data final` e uma quantidade fixa de datas universais de interesse. A existência desses campos não implica que todos sejam aplicáveis ou obrigatórios em toda tipologia. Por exemplo, em uma pessoa, `denominação` pode significar o nome de referência interna na organização e `data inicial` pode significar a data de nascimento; em um documento, `denominação` pode significar seu título e `data inicial` sua data de emissão; em um contrato, as datas podem significar o início e o término de sua vigência.
+
+Para cada atributo generalista, a tipologia deve declarar, quando aplicável:
+
+- **rótulo** (*label*) apresentado ao usuário;
+- **descrição** de seu significado semântico;
+- aplicabilidade;
+- obrigatoriedade;
+- tipo de valor;
+- cardinalidade;
+- regras de validação;
+- visibilidade e regras de processamento.
+
+Além dos atributos generalistas, uma tipologia pode introduzir **atributos específicos**, necessários apenas à sua própria semântica. Um contrato pode possuir atributos próprios para condições ou cláusulas contratuais; uma nota de empenho pode possuir atributos próprios para sua identificação e execução. Esses atributos não precisam existir em artefatos de outras tipologias.
+
+Há também **atributos relacionais**, cujo valor é outro artefato ou um conjunto de artefatos. Eles devem ser definidos pela tipologia como referências individuais ou múltiplas e submetidos às regras das relações permitidas entre os polos envolvidos.
+
+### Família de valores
+
+Quando uma tipologia precisar representar valor, ela deve usar uma família fixa de atributos estruturais, em vez de um único campo universal com tipos de dados incompatíveis. A família inicial é composta por:
+
+- valor numérico;
+- unidade;
+- moeda;
+- valor textual, quando necessário.
+
+A tipologia define quais atributos dessa família são aplicáveis e obrigatórios. Um contrato ou uma nota de empenho pode exigir valor numérico e moeda; um bem pode exigir valor numérico e uma unidade de mensuração ou moeda; uma pessoa pode tornar todos esses atributos não aplicáveis. Essa composição preserva persistência e consultas previsíveis, sem reduzir a capacidade de especialização semântica.
+
+Em síntese, a tipologia não apenas classifica o artefato: ela estabelece o contrato semântico de seus atributos universais e introduz os atributos específicos e relacionais requeridos por sua natureza.
+
+## Identidade e unicidade representacional
+
+Todo artefato possui identidade persistente. Em regra, um mesmo referente material, informacional, conceitual, normativo, relacional ou operacional deve possuir uma única representação artefatual no sistema. A criação acidental de artefatos distintos para o mesmo referente é vedada e deve ser prevenida ou reconciliada pelos mecanismos de identidade aplicáveis.
+
+Uma cópia deliberada pode ser admitida por necessidade circunstancial, desde que resulte de uma ação consciente e preserve sua proveniência. Nesses casos, a origem deve ser registrada pela relação canônica:
+
+```text
+Artefato de origem ──é copiado por──> Artefato copiado
+```
+
+A cópia passa a possuir identidade própria e não deve ser confundida com uma segunda representação independente do mesmo referente. Ela pode, por exemplo, ser adaptada para servir de referência operacional ou para originar um novo definidor com capacidade de template. As condições de autorização e os efeitos da cópia pertencem à definição da relação e às regras do contexto em que ela é usada.
+
 ## Regime ontológico
 
 Todo artefato pertence a um dos seguintes regimes ontológicos:
@@ -30,13 +130,15 @@ Todo artefato pertence a um dos seguintes regimes ontológicos:
 - **Definidor** — artefato abstrato que fornece ancestralidade funcional ou semântica a outros definidores.
 - **Instância** — ocorrência concreta fundada em uma definição aplicável.
 
-Os axiomas são artefatos visíveis e classificáveis, mas sua validade não depende de uma cadeia ordinária de definições internas. Eles constituem a raiz de bootstrap a partir da qual o sistema interpreta as demais definições, relações e instâncias.
+Um axioma pode não possuir ancestral. Quando possuir um ou mais, todos devem estar igualmente no regime `axioma`. Todo definidor, por sua vez, deve possuir pelo menos um ancestral imediato, que pode ser um axioma ou outro definidor. Essas regras asseguram que nenhum definidor comum exista sem fundamentação e que toda cadeia possa ser percorrida até um ou mais axiomas-raiz.
 
-Um definidor pode ter a capacidade de funcionar como **template**. Template não é um quarto regime: é uma capacidade de um definidor reutilizável para orientar a criação ou configuração de instâncias.
+Um definidor pode ter a capacidade de funcionar como **template**. Template não é um quarto regime: é uma capacidade de um definidor reutilizável para orientar a criação ou configuração de instâncias.[^promocao-template]
+
+[^promocao-template]: Uma instância pode sofrer uma operação de sistema apresentada ao usuário como “tornar-se template”. A instância original não muda de regime: o sistema cria outro artefato, no regime `definidor`, descendente tanto do definidor-base de template quanto do definidor instanciado pela origem, copia da instância seu conteúdo e os metadados autorizados, registra a proveniência e marca o novo definidor como template — e, necessariamente, como instanciável. Consulte [[04_typing-and-classification#Templates e promoção de instância|Templates e promoção de instância]].
 
 Todo definidor também deve declarar se é **instanciável**. Essa capacidade, que poderá corresponder a um atributo próprio do definidor, autoriza ou veda que instâncias concretas o usem como base imediata em uma relação de instanciação. Um definidor não instanciável ainda pode definir outros definidores, transmitir semântica, fornecer estrutura ou atuar como componente de um template, mas não pode receber diretamente uma relação `instancia`.
 
-Template e instanciabilidade são capacidades distintas. Um definidor pode ser reutilizável como template, instanciável, ambos ou nenhum, conforme a semântica que sua definição determinar.
+Template e instanciabilidade são capacidades distintas, mas não independentes: todo definidor com capacidade de template deve ser instanciável. Um definidor instanciável não precisa ser template, e um definidor sem nenhuma dessas capacidades ainda pode definir ou compor outros definidores.
 
 ## Ancestralidade de definições
 
@@ -49,7 +151,7 @@ Definição derivada ──é definida por──> Definição-base
 
 Uma definição derivada herda, especializa ou compõe significado, estrutura, capacidades, restrições ou comportamento de sua definição-base. A relação `é definido por` é a leitura inversa de `define`.
 
-O grafo formado por `define` é uma rede dirigida acíclica (*directed acyclic graph*, ou DAG) e deve terminar em um ou mais axiomas. Não se trata, portanto, de uma árvore: um definidor pode possuir múltiplos definidores-base e, simultaneamente, definir múltiplos descendentes. O que é vedado é que um definidor se torne ancestral de si mesmo, direta ou indiretamente.
+O grafo formado por `define` é uma rede dirigida acíclica (*directed acyclic graph*, ou DAG). Percorrida no sentido inverso, pela leitura `é definido por`, toda cadeia deve alcançar um ou mais axiomas-raiz. Não se trata, portanto, de uma árvore: um definidor pode possuir múltiplos definidores-base e, simultaneamente, definir múltiplos descendentes. O que é vedado é que um artefato se torne ancestral de si mesmo, direta ou indiretamente.
 
 ```text
 A ──define──> B
@@ -117,9 +219,11 @@ Essas relações têm semânticas distintas:
 
 Por exemplo, um rascunho revisado pode derivar de um rascunho anterior, uma nova versão pode ser copiada de uma versão prévia e uma resposta pode usar uma comunicação anterior como referência. Em todos os casos, cada artefato continua sendo instância de seu definidor aplicável; as relações entre instâncias registram sua história operacional e seu contexto.
 
+As regras detalhadas para definidores de relação, polos, leituras, cardinalidade, admissibilidade e proveniência estão registradas em [[02_relationships-and-provenance|Relações e proveniência]].
+
 ## Relações axiomáticas
 
-As definições das relações `define`, `é definido por`, `instancia` e `é instanciada por` pertencem à base axiomática do sistema. Elas podem ser representadas e consultadas como artefatos, mas a interpretação de seu significado não depende de relações ordinárias adicionais.
+As definições das relações `define` e `instancia` pertencem à base axiomática do sistema. `É definido por` e `é instanciada por` são suas respectivas leituras inversas, não relações semanticamente independentes. Elas podem ser representadas e consultadas como artefatos, mas a interpretação de seu significado não depende de relações ordinárias adicionais.
 
 ```text
 Axioma
