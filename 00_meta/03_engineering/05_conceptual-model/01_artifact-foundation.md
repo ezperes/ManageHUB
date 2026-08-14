@@ -43,8 +43,8 @@ Os exemplos seguintes são ilustrativos e não esgotam os elementos representáv
 | Reunião ocorrida ou agendada | Instância | Definição de reunião |
 | Definição de arquivo digital | Definidor | Definição-base de recurso informacional |
 | Arquivo anexado específico | Instância | Definição de arquivo digital |
-| Definição da relação `fiscaliza` | Definidor | Definição-base de relação |
-| Vínculo concreto entre fiscal e contrato | Instância relacional | Definição da relação `fiscaliza` |
+| Definição de fiscalização técnica de contrato | Definidor | Definição-base de relação multipolar |
+| Fiscalização técnica nº 7 | Instância relacional | Definição de fiscalização técnica de contrato |
 | Definição de workflow | Definidor | Definição-base de processo executável |
 | Execução específica de workflow | Instância | Definição de workflow |
 
@@ -120,7 +120,7 @@ Uma cópia deliberada pode ser admitida por necessidade circunstancial, desde qu
 Artefato de origem ──é copiado por──> Artefato copiado
 ```
 
-A cópia passa a possuir identidade própria e não deve ser confundida com uma segunda representação independente do mesmo referente. Ela pode, por exemplo, ser adaptada para servir de referência operacional ou para originar um novo definidor com capacidade de template. As condições de autorização e os efeitos da cópia pertencem à definição da relação e às regras do contexto em que ela é usada.
+A cópia passa a possuir identidade própria e não deve ser confundida com uma segunda representação independente do mesmo referente. Ela pode, por exemplo, ser adaptada para servir de referência operacional. A criação de um definidor template a partir de uma instância é uma derivação semanticamente distinta, não uma cópia. As condições de autorização e os efeitos de cada operação pertencem à definição da relação e às regras do contexto em que ela é usada.
 
 ## Regime ontológico
 
@@ -134,7 +134,7 @@ Um axioma pode não possuir ancestral. Quando possuir um ou mais, todos devem es
 
 Um definidor pode ter a capacidade de funcionar como **template**. Template não é um quarto regime: é uma capacidade de um definidor reutilizável para orientar a criação ou configuração de instâncias.[^promocao-template]
 
-[^promocao-template]: Uma instância pode sofrer uma operação de sistema apresentada ao usuário como “tornar-se template”. A instância original não muda de regime: o sistema cria outro artefato, no regime `definidor`, descendente tanto do definidor-base de template quanto do definidor instanciado pela origem, copia da instância seu conteúdo e os metadados autorizados, registra a proveniência e marca o novo definidor como template — e, necessariamente, como instanciável. Consulte [[04_typing-and-classification#Templates e promoção de instância|Templates e promoção de instância]].
+[^promocao-template]: Uma instância pode sofrer uma operação de sistema apresentada ao usuário como “tornar-se template”. A instância original não muda de regime: o sistema cria outro artefato, no regime `definidor`, descendente tanto do definidor-base de template quanto do definidor instanciado pela origem, transfere da instância seu conteúdo e os metadados autorizados, registra a derivação e marca o novo definidor como template — e, necessariamente, como instanciável. Consulte [[04_typing-and-classification#Templates e promoção de instância|Templates e promoção de instância]].
 
 Todo definidor também deve declarar se é **instanciável**. Essa capacidade, que poderá corresponder a um atributo próprio do definidor, autoriza ou veda que instâncias concretas o usem como base imediata em uma relação de instanciação. Um definidor não instanciável ainda pode definir outros definidores, transmitir semântica, fornecer estrutura ou atuar como componente de um template, mas não pode receber diretamente uma relação `instancia`.
 
@@ -142,32 +142,38 @@ Template e instanciabilidade são capacidades distintas, mas não independentes:
 
 ## Ancestralidade de definições
 
-A relação axiomática `define` expressa ancestralidade funcional ou semântica entre definidores:
+A relação axiomática `define` organiza a família de vínculos capazes de expressar fundamentação funcional ou semântica entre definições. Ela é **abstrata e não instanciável**: não deve existir vínculo concreto cujo definidor imediato seja `define`. Toda ligação persistida nessa família instancia um descendente mais específico.
+
+O primeiro descendente classificatório adotado pelo modelo possui as seguintes leituras:
 
 ```text
-Definição-base ──define──> Definição derivada
-Definição derivada ──é definida por──> Definição-base
+Definição-base ──é base conceitual para──> Definição especializada
+Definição especializada ──é especialização de──> Definição-base
 ```
 
-Uma definição derivada herda, especializa ou compõe significado, estrutura, capacidades, restrições ou comportamento de sua definição-base. A relação `é definido por` é a leitura inversa de `define`.
+`É base conceitual para` transmite ancestralidade classificatória: a definição especializada herda, restringe, especializa ou compõe significado, estrutura, capacidades, restrições ou comportamento de sua base. `É especialização de` é a leitura inversa do mesmo fato.
 
-O grafo formado por `define` é uma rede dirigida acíclica (*directed acyclic graph*, ou DAG). Percorrida no sentido inverso, pela leitura `é definido por`, toda cadeia deve alcançar um ou mais axiomas-raiz. Não se trata, portanto, de uma árvore: um definidor pode possuir múltiplos definidores-base e, simultaneamente, definir múltiplos descendentes. O que é vedado é que um artefato se torne ancestral de si mesmo, direta ou indiretamente.
+Outros descendentes de `define` podem estabelecer fundamentação sem transmitir classificação. `É fonte derivativa de`, por exemplo, registra que um artefato novo foi produzido a partir de outro, mas não torna o resultado uma especialização ontológica da fonte. Por isso, cada definidor concreto pertencente à família de `define` deve declarar se transmite ancestralidade classificatória, estrutura, capacidades e restrições ou se preserva apenas proveniência.
+
+Na prosa e nas consultas, `define` pode designar a família inteira ou o predicado genérico inferido de seus descendentes. Essa conveniência não autoriza sua instanciação direta.
+
+O grafo formado pelas relações da família de `define` que transmitam ancestralidade classificatória é uma rede dirigida acíclica (*directed acyclic graph*, ou DAG). Percorrida no sentido inverso, toda cadeia deve alcançar um ou mais axiomas-raiz. Não se trata, portanto, de uma árvore: um definidor pode possuir múltiplas bases conceituais e, simultaneamente, servir de base para múltiplos descendentes. O que é vedado é que um artefato se torne ancestral de si mesmo, direta ou indiretamente.
 
 ```text
-A ──define──> B
-A ──define──> C
-B ──define──> D
-C ──define──> D
+A ──é base conceitual para──> B
+A ──é base conceitual para──> C
+B ──é base conceitual para──> D
+C ──é base conceitual para──> D
 ```
 
-Nesse exemplo, `A` define diretamente `B` e `C`; `B` e `C` definem `D`. Assim, `D` possui dois ancestrais diretos e `A` é seu ancestral indireto. A rede admite herança múltipla e especializações paralelas porque nenhum caminho retorna de `D` para `A`, `B`, `C` ou para o próprio `D`.
+Nesse exemplo, `A` é base conceitual direta para `B` e `C`; `B` e `C` são bases conceituais para `D`. Assim, `D` possui dois ancestrais diretos e `A` é seu ancestral indireto. A rede admite herança múltipla e especializações paralelas porque nenhum caminho retorna de `D` para `A`, `B`, `C` ou para o próprio `D`.
 
-Em termos semânticos, uma definição de **comunicação oficial** pode definir, em paralelo, as definições de **comunicação recebida** e **comunicação enviada**. Uma definição de **resposta formal recebida** pode então ser definida simultaneamente por ambas: herda a estrutura comum de comunicação oficial e especializa aspectos associados ao recebimento e à resposta.
+Em termos semânticos, uma definição de **comunicação oficial** pode ser base conceitual, em paralelo, para **comunicação recebida** e **comunicação enviada**. Uma definição de **resposta formal recebida** pode então ser especialização simultânea de ambas: herda a estrutura comum de comunicação oficial e especializa aspectos associados ao recebimento e à resposta.
 
 Formalmente, não pode existir caminho de tamanho positivo como:
 
 ```text
-A ──define+──> A
+A ──é base conceitual para+──> A
 ```
 
 ## Instanciação
@@ -183,37 +189,79 @@ Na leitura orientada à instância, a mesma ideia pode ser expressa como: uma in
 
 Instanciação não é sinônimo de `define`:
 
-- `define` liga uma definição a outra definição e transmite ancestralidade funcional ou semântica;
+- a família de `define` organiza vínculos de fundamentação entre definições; somente seus descendentes classificatórios transmitem ancestralidade funcional ou semântica;
 - `instancia` liga uma ocorrência concreta à definição que ela materializa.
 
 Uma relação `instancia` somente é válida quando seu polo de origem está no regime `instância` e seu polo de destino está no regime `definidor` com a capacidade `instanciável` autorizada. A relação não é permitida apenas porque um artefato é um definidor; a autorização deve ser declarada pela própria definição.
 
-Cada instância deve instanciar **uma e somente uma** definição. A cardinalidade imediata da relação é, portanto, `1` no polo da definição: uma instância não pode materializar diretamente múltiplos definidores. Ela pode, contudo, herdar fundamentação indireta de diversos ancestrais por meio da rede acíclica de `define` da única definição que instancia.
+Cada instância deve instanciar **uma e somente uma** definição. A cardinalidade imediata da relação é, portanto, `1` no polo da definição: uma instância não pode materializar diretamente múltiplos definidores. Ela pode, contudo, herdar fundamentação indireta de diversos ancestrais por meio da rede acíclica classificatória da única definição que instancia.
 
 Uma instância pode estar diretamente ligada a uma definição especializada e, por sua cadeia de definições, possuir fundamentação indireta em múltiplos definidores e axiomas. Essa fundamentação deve poder ser percorrida e auditada sem exigir a materialização de cada vínculo indireto como um fato independente.
+
+## Classificação intrínseca e contexto
+
+Toda instância possui um único definidor imediato. Suas **classificações intrínsecas** decorrem desse definidor e da rede de ancestralidade formada pela família semântica da relação axiomática `define`; elas não são atribuídas à instância como classificações independentes.
+
+Uma instância satisfaz uma classificação quando seu definidor imediato é a própria classificação ou quando a classificação é ancestral desse definidor. A travessia considera somente relações concretas descendentes de `define` que declarem transmitir ancestralidade classificatória e preservem aciclicidade.
+
+```text
+Contrato nº 52/2026
+  └── instancia → Contrato administrativo
+                       └── é especialização de → Instrumento contratual
+                                                    └── é especialização de → Instrumento jurídico
+```
+
+O contrato satisfaz as três classificações, embora instancie imediatamente apenas `Contrato administrativo`.
+
+Classificações **contextuais**, em contraste, decorrem dos papéis, relações, circunstâncias ou inferências temporais em que a instância participa. `Pessoa física` pode ser uma classificação intrínseca de Ten Izabela; `fiscal técnica titular do Contrato nº 52/2026` é um papel contextual produzido por uma relação concreta. A distinção entre classificação intrínseca e contextual é axiomática no modelo; seus efeitos sobre consultas estão detalhados em [[04_typing-and-classification#Classificações intrínsecas e contextuais|Tipagem e classificação]].
+
+## Fatos persistidos e informações derivadas
+
+Nem todo predicado verdadeiro sobre um artefato precisa residir em um campo próprio. Uma informação pode decorrer de:
+
+- atributo universal semanticamente especializado;
+- atributo específico introduzido pelo definidor;
+- relação bipolar direta;
+- participação em relação multipolar;
+- cadeia de relações;
+- classificação herdada;
+- cálculo determinístico em tempo de execução;
+- inferência composta por campos, relações e classificações.
+
+O contrato persistir `data final` com a semântica de `data de expiração da vigência`, por exemplo, não exige persistir também o estado `vigente`. Esse estado pode ser resolvido em tempo de execução pela comparação da data com o instante de referência e por outras condições aplicáveis.
+
+## Informação incorporada e promoção
+
+Uma informação deve nascer na forma estrutural mais simples capaz de preservar seu significado e sua utilidade: valor de atributo, conteúdo estruturado ou relação. Ela somente deve tornar-se artefato autônomo quando sua relevância justificar identidade, proveniência ou vida relacional próprias.
+
+O usuário pode promover deliberadamente uma informação incorporada a artefato. A promoção preserva a informação em seu locus original, salvo decisão explícita em contrário, e cria uma instância com identidade persistente, um único definidor imediato e relação obrigatória de proveniência com a origem. Denominação, validade, relações e histórico próprios são exigidos conforme a definição aplicável.
+
+A promoção não é cópia: individualiza uma unidade informacional que antes estava incorporada em outro artefato. Seus critérios e seu ciclo de vida estão detalhados em [[05_information-and-containment#Promoção de informação a artefato|Informação, continência e promoção]].
 
 ## Linhagem entre instâncias
 
 Instâncias não instanciam outras instâncias. Ainda assim, uma instância pode manter relações de linhagem ou de contexto com outra instância, sem que isso altere a única definição da qual cada uma é instância.
 
-Uma relação entre duas instâncias somente é válida quando existe um **definidor de relação** que a define e que admite artefatos do regime `instância` nos dois polos. Portanto, não basta que dois artefatos sejam instâncias para que possam ser ligados: a natureza, a direção, os polos permitidos e as regras do vínculo devem ser declarados pelo definidor da relação.
+Uma relação bipolar entre duas instâncias somente é válida quando existe um **definidor de relação** concreto, instanciável e que admita artefatos do regime `instância` nos dois polos. Portanto, não basta que dois artefatos sejam instâncias para que possam ser ligados: a natureza, a direção, os polos permitidos e as regras do vínculo devem ser declarados pelo definidor da relação. Relações multipolares são artefatos agregadores ligados a seus participantes por duas ou mais relações bipolares definidas.
 
 ```text
-Definidor de relação ──define──> Relação entre instâncias
-Instância A ──[polo permitido]──> Relação definida ──[polo permitido]──> Instância B
+Relação bipolar ──é base conceitual para──> Definidor concreto de relação
+Instância relacional ──instancia──> Definidor concreto de relação
+Instância A ──[polo permitido]──> Instância relacional ──[polo permitido]──> Instância B
 ```
 
 As relações candidatas iniciais são:
 
 ```text
-Instância derivada ──deriva de──> Instância de origem
+Instância de origem ──é fonte derivativa de──> Instância derivada
+Instância derivada ──é derivado de──> Instância de origem
 Instância de origem ──é copiada por──> Instância copiada
 Instância posterior ──serve de referência para──> Instância que a consulta
 ```
 
 Essas relações têm semânticas distintas:
 
-- **deriva de** preserva uma transformação ou continuidade: a instância derivada foi obtida a partir de outra, possivelmente com alterações;
+- **é derivado de** preserva uma transformação ou continuidade: a instância derivada foi obtida a partir de outra, possivelmente com alterações;
 - **é copiada por** registra a reprodução de uma instância por outra, sem afirmar que a cópia seja semanticamente uma nova definição;
 - **serve de referência para** registra uso contextual, consulta ou inspiração, sem afirmar derivação nem cópia.
 
@@ -223,14 +271,21 @@ As regras detalhadas para definidores de relação, polos, leituras, cardinalida
 
 ## Relações axiomáticas
 
-As definições das relações `define` e `instancia` pertencem à base axiomática do sistema. `É definido por` e `é instanciada por` são suas respectivas leituras inversas, não relações semanticamente independentes. Elas podem ser representadas e consultadas como artefatos, mas a interpretação de seu significado não depende de relações ordinárias adicionais.
+As definições das relações `define` e `instancia` pertencem à base axiomática do sistema. `Define` é abstrata e não instanciável; `é definido por` é sua leitura inversa genérica. `Instancia` é interpretada diretamente pelo núcleo; `é instanciada por` é sua leitura inversa. Leituras inversas não constituem relações semanticamente independentes.
 
 ```text
-Axioma
-  └── define → Definição-base
-        └── define → Definição especializada
-              └── é instanciada por → Instância concreta
+define [axioma abstrato]
+├── é base conceitual para / é especialização de
+└── é fonte derivativa de / é derivado de
+
+Axioma ──é base conceitual para──> Definição-base
+Definição-base ──é base conceitual para──> Definição especializada
+Definição especializada ──é instanciada por──> Instância concreta
 ```
+
+## Unidade lógica e persistência física
+
+Todo artefato possui identidade e comportamento no modelo lógico comum, mas isso não exige que todas as famílias ocupem uma única tabela física. A ontologia determina o que cada artefato é; a política de materialização determina se e por quanto tempo uma ocorrência deve ser persistida; a arquitetura de persistência determina onde e como armazená-la. Essas camadas devem permanecer distinguíveis para permitir estratégias próprias de retenção, particionamento, auditoria e desempenho sem romper a unidade conceitual do artefato.
 
 ## Questões ainda abertas
 

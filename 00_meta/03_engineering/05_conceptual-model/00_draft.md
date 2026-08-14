@@ -33,25 +33,13 @@ Essa rede deve viabilizar, entre outras capacidades, reconstrução de narrativa
 
 ## Relações como fatos de primeira classe
 
-Relações são artefatos de primeira classe: seus definidores estabelecem semântica, polos, leituras, cardinalidade e filtros, enquanto suas instâncias registram vínculos concretos e sua proveniência. A formulação corrente está em [[02_relationships-and-provenance|Relações e proveniência]].
+Relações são artefatos de primeira classe: seus definidores estabelecem semântica, polos, leituras, cardinalidade e filtros, enquanto suas instâncias registram vínculos concretos e sua proveniência. `Define` organiza uma família abstrata e não instanciável; relações concretas distinguem especialização conceitual, derivação produtiva e outras formas de fundamentação. A formulação corrente está em [[02_relationships-and-provenance|Relações e proveniência]].
+
+Filtros também são artefatos definíveis, instanciáveis, parametrizáveis e reutilizáveis. Seus consumidores declaram persistentemente onde e em quais fases devem atuar; resolvedores determinísticos interpretam essas declarações em tempo de execução. Exceções deliberadas e inconformidades supervenientes preservam histórias distintas.
 
 ## Trabalho, obrigação e satisfação
 
-Uma tarefa é mais que uma anotação de trabalho. Ela pode representar uma obrigação contextualizada: algo que precisa ser realizado porque algum evento, comunicação, regra, processo ou outro artefato a motivou.
-
-O esquema inicial é:
-
-```text
-origem → tarefa ou obrigação → resultado ou evidência
-```
-
-- A **origem** responde por que a obrigação existe.
-- A **tarefa** representa o trabalho ou resultado esperado.
-- A **solução**, **resultado** ou **evidência** é o artefato que demonstra o atendimento da obrigação.
-
-Esse encadeamento permite perguntar não apenas se uma tarefa foi marcada como concluída, mas qual registro concreto sustenta essa conclusão.
-
-Uma tarefa pode ter uma solução esperada, mas a existência de um produto não significa automaticamente que a obrigação foi satisfeita. Será necessário distinguir, conforme o domínio, situações como produzir, submeter, aprovar, aceitar, enviar, rejeitar, substituir e satisfazer. Também permanece em aberto se toda tarefa terá exatamente uma origem ou se haverá obrigações legitimamente sustentadas por múltiplas origens.
+Uma tarefa é mais que uma anotação de trabalho: representa uma obrigação contextualizada, ligada à sua origem e às evidências de satisfação. A formulação inicial e sua integração com informações normativas, resolvedores e relações multipolares estão em [[03_work-and-fulfillment|Trabalho e satisfação]].
 
 ## Identidade e representação legível
 
@@ -63,17 +51,9 @@ Representações legíveis podem incluir a classificação corrente, por exemplo
 
 ## Classificação: uma dimensão não basta
 
-O modelo inicial agrupava os artefatos por domínios como entidade, documento, processo, tarefa, evento, referencial e relação, com classes e subclasses. Esse vocabulário é um ponto de partida útil, mas não deve ainda ser tratado como uma taxonomia definitiva e mutuamente exclusiva.
+O modelo adota classificação multidimensional e polihierárquica. Classificações intrínsecas são projetadas pelo único definidor imediato e por sua ancestralidade; papéis e classificações contextuais decorrem de relações e circunstâncias. O modelo, as consultas por ancestralidade e os estados derivados estão em [[04_typing-and-classification|Tipagem e classificação]].
 
-Diversas propriedades pertencem a dimensões independentes:
-
-- uma pessoa pode exercer múltiplos papéis em diferentes contextos;
-- uma tarefa pode ser recorrente, ter prazo, exigir aprovação e ser complexa simultaneamente;
-- um documento pode ter uma espécie documental, um formato de arquivo e versões distintas;
-- uma comunicação pode ser também um evento, enquanto seu registro ou resumo é um documento;
-- fornecedor, responsável e participante podem ser papéis relacionais, não espécies permanentes de entidade.
-
-O amadurecimento da classificação deve distinguir pelo menos natureza, tipo funcional, papel contextual, estado, formato ou representação e vocabulário específico de domínio. Não está decidido se haverá uma taxonomia única, taxonomias complementares, etiquetas, tipos configuráveis ou outra composição.
+Informação, campo, contêiner, portador, canal e formato são planos distintos. A promoção de informação a artefato e os resolvedores determinísticos estão em [[05_information-and-containment|Informação, continência e promoção]].
 
 ## Universalidade e especialização
 
@@ -87,13 +67,29 @@ A IA pode atuar sobre a rede de contexto para sugerir classificações, extrair 
 
 Inferências automatizadas não devem ser confundidas automaticamente com fatos confirmados. Uma sugestão precisa conservar proveniência, método, data, confiança e, quando cabível, um fluxo de revisão humana antes de produzir efeitos operacionais relevantes.
 
+Resolvedores determinísticos constituem vocabulário próprio, distinto de skills ou agentes de IA. Seus definidores e os definidores das operações consumidoras podem estabelecer se as execuções e buscas subordinadas serão persistidas, qual conteúdo será preservado e por quanto tempo.
+
+## Unidade lógica e armazenamento físico
+
+Todo artefato participa de um modelo lógico comum, mas isso não obriga sua materialização nem seu armazenamento em uma única tabela. Ontologia, política de materialização e arquitetura física são planos distintos. Essa separação deve orientar futuras decisões de retenção, particionamento, auditoria e desempenho sem antecipar uma tecnologia específica.
+
 ## Questões em aberto
 
 - Que relações devem ser explicitamente modeladas e quais podem ser derivadas?
-- Como representar relações n-árias, validade temporal, versões e contradições?
+- Quais descendentes de `define` transmitem ancestralidade, estrutura, capacidades ou somente proveniência?
+- Como modelar relações multipolares com quantidade variável de componentes?
 - Quais condições autorizam cópias deliberadas e quais efeitos elas produzem em cada contexto?
 - Uma tarefa pode ter múltiplas origens, múltiplas evidências ou soluções parciais?
-- Quais estados são derivados da rede e quais precisam ser declarados ou confirmados?
+- Quais dimensões classificatórias e relações-base devem integrar os axiomas?
+- Como resolver conflitos entre múltiplos ancestrais?
+- Quais estados e resultados determinísticos precisam ser materializados?
+- Como versionar resolvedores e reproduzir decisões históricas?
+- Como compor filtros e políticas de persistência herdados de múltiplos definidores?
+- Qual tratamento cada consumidor deve atribuir ao resultado `indeterminado`?
+- Quando revalidar exceções e como tratar inconformidades supervenientes?
+- Quando uma execução efêmera deve ser promovida a artefato durável?
+- Como sincronizar uma informação promovida com seu locus original e definir a fonte autoritativa?
+- Como representar múltiplas fontes concordantes ou contraditórias?
 - Como serão governados vocabulários universais e vocabulários específicos de cada aplicação?
 - Quais direitos de acesso, retenção e auditoria acompanham artefatos e relações?
 - Que decisões técnicas serão justificadas por este modelo quando houver necessidades concretas de implementação?
